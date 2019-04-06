@@ -49,10 +49,11 @@ objdump -d bash-asm >> bash-asm-op
 
 ```
 
-chmod +x op-codes.lisp</li>
+chmod +x op-codes.lisp
 
 ```
 
+</li>
 <li>then run it it with the file name you created a minute ago as the argument:</li>
 
 ```
