@@ -1,5 +1,4 @@
 #!/usr/bin/sbcl --script
-;;;;script that takes in a compiled file and grabs only the op codes from it
 (defparameter *path* (second sb-ext:*posix-argv*))
 (defparameter *file* (if *path*
 			 (merge-pathnames 
