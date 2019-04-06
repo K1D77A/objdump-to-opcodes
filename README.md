@@ -6,7 +6,8 @@ Install SBCL with whatever package manager you have:
 "emerge sbcl" on Gentoo
 
 Next get your ASM:
-	```global _start
+```
+global _start
 	section .data
 program:	db '/bin/bash', 0
 	section .text
@@ -16,7 +17,8 @@ _start:
 	mov rdi, program             
 	xor rsi, rsi
 	xor rdx, rdx
-	syscall```
+	syscall
+```
 
 
 Next compile that and link it:
