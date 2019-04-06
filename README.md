@@ -7,6 +7,9 @@ takes a file containing the output of calling "objdump -d <asm file>" and return
 		"emerge sbcl" on Gentoo</li>
 
 <li>Next get your ASM:</li>
+
+```
+
 ```
 global _start
 	section .data
@@ -20,7 +23,7 @@ _start:
 	xor rdx, rdx
 	syscall
 ```
-
+```
 
 <li>Next compile that and link it:
 
