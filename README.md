@@ -3,7 +3,7 @@ takes a file containing the output of calling "objdump -d <asm file>" and return
 
 <h1> How to use </h1>
 <ul>
-	<li>Install SBCL with whatever package manager you have:__
+	<li>Install SBCL with whatever package manager you have:<br>
 		"emerge sbcl" on Gentoo</li>
 
 <li>Next get your ASM:
