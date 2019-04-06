@@ -8,9 +8,10 @@ takes a file containing the output of calling "objdump -d <asm file>" and return
 
 <li>Next get your ASM:</li>
 
-```
+
 
 ```
+
 global _start
 	section .data
 program:	db '/bin/bash', 0
@@ -22,8 +23,9 @@ _start:
 	xor rsi, rsi
 	xor rdx, rdx
 	syscall
+	
 ```
-```
+
 
 <li>Next compile that and link it:
 
