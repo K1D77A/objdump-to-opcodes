@@ -29,7 +29,7 @@ _start:
 
 <li>Next compile that and link it:
 	
-	```
+```
 
 nasm -felf64 bash.asm -o bash-asm <br>
 ld bash-asm.o -o bash-asm</li>
@@ -42,6 +42,7 @@ ld bash-asm.o -o bash-asm</li>
 objdump -d bash-asm >> bash-asm-op
 
 ```
+
 </li>
 
 <li>Now save this file op-codes.lisp into the same directory as your compiled assembly and make it executable<br>
