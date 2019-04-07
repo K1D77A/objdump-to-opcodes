@@ -1,4 +1,6 @@
-#!/usr/bin/sbcl --script
+;#!/usr/bin/sbcl --script
+;;;;script that takes in a compiled file and grabs only the op codes from it
+
 (defparameter *path* (second sb-ext:*posix-argv*))
 (defparameter *file* (if *path*
 			 (merge-pathnames 
@@ -55,8 +57,16 @@
   "turns '0f05' into '\x0f\x05"
   (coerce (remove nil
 		  (reduce #'append
-			  (loop :for (a b) :on (coerce op-code-entry 'list)
-				:collect (list #\\ #\x a b))))
+			  (do* ((op-code-list (coerce op-code-entry 'list))
+				(a (pop op-code-list)
+				   (pop op-code-list))
+				(b (pop op-code-list)
+				   (pop op-code-list))
+				(new ()))
+			       ((and (null a)(null b))
+				(reverse new))
+			  ;  (print a)
+			    (push (list #\\ #\x a b) new))))	 
 	  'string))
 
 (defun hexlify-op-codes-file (a-files-op-codes)
@@ -79,3 +89,9 @@
 (princ #\NewLine)
 (process *file*)
 (princ #\NewLine)
+;(defun ree (a)
+ ; (let ((b (logxor #x6000c8 a)))
+  ;  (format t "~X" a)
+   ; (princ #\NewLine)
+    ;(format t "~X" b)
+   ; (logxor a b)))
