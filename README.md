@@ -6,42 +6,31 @@ takes a file containing the output of calling "objdump -d <asm file>" and return
 	<li>Install SBCL with whatever package manager you have:<br>
 		"emerge sbcl" on Gentoo</li>
 
-<li>Next get your ASM:</li>
+<li>Take the output of objdump and put into a file:</li>
 
 
 
 ```
 
-global _start
-	section .data
-program:	db '/bin/bash', 0
-	section .text
-_start:
-				;need file descriptor for stdout
-	mov rax, 59 		;syscall number execve
-	mov rdi, program             
-	xor rsi, rsi
-	xor rdx, rdx
-	syscall
+
+bash-asm:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+00000000004000b0 <_start>:
+  4000b0:	b8 3b 00 00 00       	mov    $0x3b,%eax
+  4000b5:	48 bf c8 00 60 00 00 	movabs $0x6000c8,%rdi
+  4000bc:	00 00 00 
+  4000bf:	48 31 f6             	xor    %rsi,%rsi
+  4000c2:	48 31 d2             	xor    %rdx,%rdx
+  4000c5:	0f 05                	syscall 
+
+
 	
 ```
 
 
-<li>Next compile that and link it:
-	
-```
-
-nasm -felf64 bash.asm -o bash-asm 
-ld bash-asm.o -o bash-asm
-
-```
-<li>use objdump to create a file for use with the script:
-
-```
-
-objdump -d bash-asm >> bash-asm-op
-
-```
 
 </li>
 
@@ -58,8 +47,10 @@ chmod +x op-codes.lisp
 
 ```
 
-./op-codes.lisp bash-asm-op
-\xb8\x83\x3b\xb0\x00\x00\x00\x00\x00\x0\x48\x8b\xbf\xfc\xc8\x80\x00\x06\x60\x00\x00\x00\x00\x0\x48\x83\x31\x1f\xf6\x6\x48\x83\x31\x1d\xd2\x2\x0f\xf0\x05\x5
+./op-codes.lisp bash-asm-op 
+
+\xb8\x3b\x00\x00\x00\x48\xbf\xc8\x00\x60\x00\x00\x00\x00\x00\x48\x31\xf6\x48\x31\xd2\x0f\x05
+
 
 ```
 
