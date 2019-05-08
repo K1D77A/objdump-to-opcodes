@@ -35,7 +35,7 @@ nasm -felf64 bash.asm -o bash-asm <br>
 ld bash-asm.o -o bash-asm</li>
 
 ```
-<li>use objdump to create a file for use with the script:<br>
+<li>use objdump to create a file for use with the script:
 
 ```
 
