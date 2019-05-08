@@ -31,8 +31,8 @@ _start:
 	
 ```
 
-nasm -felf64 bash.asm -o bash-asm <br>
-ld bash-asm.o -o bash-asm</li>
+nasm -felf64 bash.asm -o bash-asm 
+ld bash-asm.o -o bash-asm
 
 ```
 <li>use objdump to create a file for use with the script:
